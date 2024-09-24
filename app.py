@@ -36,9 +36,6 @@ def process_message():
         account_sid = os.environ['ACCOUNT_SID']
         auth_token = os.environ['AUTH_TOKEN']
 
-        # agregar manejo de errores
-        data = request.get_json()
-
         client = Client(account_sid, auth_token)
 
         message = client.messages.create(
