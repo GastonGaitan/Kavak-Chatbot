@@ -17,6 +17,12 @@ model = "gpt-4o"
 @app.route('/', methods=['GET', 'POST'])
 def process_message():
     print(request)
+    # Si es una petición POST, imprime los datos
+    if request.method == 'POST':
+        # Aquí puedes procesar el request
+        print(f"Request data: {request.get_data(as_text=True)}")
+        # Retornar una respuesta
+        return 'POST request processed', 200
     # if request.method == 'POST':
     #     account_sid = os.environ['ACCOUNT_SID']
     #     auth_token = os.environ['AUTH_TOKEN']
