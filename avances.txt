@@ -1,0 +1,13 @@
+Crear entorno virtual x
+Instalar dependencias x 
+Crear cuenta de twilio x
+Obtener numero de twilio x
+Definir endpoint al que se manda el post
+Levantar servidor en VPS de hostinguers
+Setear endpoint de flask en la VPS
+Revisar que es lo que envia el post
+Del post sacar el mensaje para mandarselo a api de chat gpt
+Cargar chat gpt con el contexto
+Hacer que twilio responda con lo que le mande la api de chat gpt
+Dockerizar el servidor de flask
+Mandar el numero del chatbot
