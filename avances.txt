@@ -2,9 +2,9 @@ Crear entorno virtual x
 Instalar dependencias x 
 Crear cuenta de twilio x
 Obtener numero de twilio x
-Definir endpoint al que se manda el post
-Levantar servidor en VPS de hostinguers
-Setear endpoint de flask en la VPS
+Definir endpoint al que se manda el post x
+Levantar servidor en VPS de hostinguers x
+Setear endpoint de flask en la VPS x
 Revisar que es lo que envia el post
 Del post sacar el mensaje para mandarselo a api de chat gpt
 Cargar chat gpt con el contexto
