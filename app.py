@@ -10,16 +10,6 @@ model = "gpt-4o"
 
 @app.route('/', methods=['GET', 'POST'])
 def process_message():
-    if request.method == 'POST':
-        # Si los datos se envían como formulario
-        data = request.form
-
-        # O si se envían como JSON
-        json_data = request.get_json()
-
-        # Mostrar los datos recibidos
-        print(f'Datos del formulario: {data}')
-        print(f'Datos JSON: {json_data}')
     response = MessagingResponse()
     response.message('Hola mundo desde el server de Flask de twilio')
     return str(response)
