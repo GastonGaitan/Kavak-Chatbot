@@ -16,6 +16,7 @@ model = "gpt-4o"
 
 @app.route('/', methods=['GET', 'POST'])
 def process_message():
+    # twilio procesa content-type -> application/x-www-form-urlencoded
     print(request)
     # Si es una petición POST, imprime los datos
     if request.method == 'POST':
@@ -26,34 +27,28 @@ def process_message():
         message_body = request.form.get('Body')
         from_number = request.form.get('From')
         to_number = request.form.get('To')
-        
-        # Imprimir los datos en la consola para verificar
-        print(f"SmsMessageSid: {sms_message_sid}")
+
         print(f"Message Body: {message_body}")
         print(f"From: {from_number}")
         print(f"To: {to_number}")
         # Retornar una respuesta
-        return 'POST request processed', 200
-    # if request.method == 'POST':
-    #     account_sid = os.environ['ACCOUNT_SID']
-    #     auth_token = os.environ['AUTH_TOKEN']
 
-    #     # agregar manejo de errores
-    #     data = request.get_json()
+        account_sid = os.environ['ACCOUNT_SID']
+        auth_token = os.environ['AUTH_TOKEN']
 
-    #     client = Client(account_sid, auth_token)
-    #     msg_to = data['msg_to']
-    #     msg_body = data['msg_body']
-    #     from_whatsapp_number = 'whatsapp:' + os.environ["TWILIO_NUMBER"]
+        # agregar manejo de errores
+        data = request.get_json()
 
-    #     message = client.messages.create(
-    #         from_=from_whatsapp_number,
-    #         body=msg_body,
-    #         to=msg_to
-    #     )
+        client = Client(account_sid, auth_token)
 
-    #     print(message.sid)
-    #     return 'Message sent to {}'.format(msg_to) 
+        message = client.messages.create(
+            from_=from_number,
+            body=message_body,
+            to=to_number
+        )
+
+        print(message.sid)
+        return 'Message sent to {}'.format(to_number) 
 
 if __name__ == '__main__':
     app.run(debug=True)
