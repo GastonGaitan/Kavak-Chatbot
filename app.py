@@ -39,9 +39,9 @@ def process_message():
         client = Client(account_sid, auth_token)
 
         message = client.messages.create(
-            from_=from_number,
+            from_=to_number,
             body=message_body,
-            to=to_number
+            to=from_number
         )
 
         print(message.sid)
