@@ -21,6 +21,17 @@ def process_message():
     if request.method == 'POST':
         # Aquí puedes procesar el request
         print(f"Request data: {request.get_data(as_text=True)}")
+        # Obtener datos del formulario
+        sms_message_sid = request.form.get('SmsMessageSid')
+        message_body = request.form.get('Body')
+        from_number = request.form.get('From')
+        to_number = request.form.get('To')
+        
+        # Imprimir los datos en la consola para verificar
+        print(f"SmsMessageSid: {sms_message_sid}")
+        print(f"Message Body: {message_body}")
+        print(f"From: {from_number}")
+        print(f"To: {to_number}")
         # Retornar una respuesta
         return 'POST request processed', 200
     # if request.method == 'POST':
