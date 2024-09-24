@@ -1,7 +1,13 @@
 from flask import Flask
+from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 
-@app.route('/kavak-assistant', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def process_message():
-    return 'Hello, World!'
+    response = MessagingResponse()
+    response.message('Hola mundo desde el server de Flask de twilio')
+    return str(response)
+
+if __name__ == '__main__':
+    app.run(debug=True)
