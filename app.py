@@ -18,9 +18,8 @@ def process_message():
     # twilio procesa content-type -> application/x-www-form-urlencoded
     print(request)
     if request.method == 'POST':
-        # Aquí puedes procesar el request
         print(f"Request data: {request.get_data(as_text=True)}")
-        # Obtener datos del formulario
+        # Get data from requests
         message_body = request.form.get('Body')
         from_number = request.form.get('From')
         to_number = request.form.get('To')
