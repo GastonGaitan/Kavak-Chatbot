@@ -33,7 +33,7 @@ def process_message():
         print(f"To: {to_number}")
         # Retornar una respuesta
         
-        kavak_assistant_response = use_openai(message_body, from_number)
+        kavak_assistant_response = use_openai(from_number, message_body)
 
         account_sid = os.environ['ACCOUNT_SID']
         auth_token = os.environ['AUTH_TOKEN']
