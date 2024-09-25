@@ -1,9 +1,6 @@
 import openai
 from dotenv import load_dotenv
 import os
-import time
-import logging
-from datetime import datetime
 import json
 
 load_dotenv()
