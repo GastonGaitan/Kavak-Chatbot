@@ -11,7 +11,10 @@ load_dotenv()
 
 app = Flask(__name__)
 
-openai_client = openai.OpenAI(api_key="sk-svcacct-ixqcwWtpjxabp64J4csqUGSqAl_bEr6VuRx-fJjbZx5p46EQp8BJE5li9er7yitaiayk0_YBc8RiUT3BlbkFJ9aT6iWGDSFldCuId9u_VcVskvRTJfPuK4SkzN3pyjgIyAezc_s_CrgWmr4glg3R9_oe8mK-uyoTjAA")
+account_sid = os.environ['ACCOUNT_SID']
+auth_token = os.environ['AUTH_TOKEN']
+
+twilio_client = Client(account_sid, auth_token)
 
 model = "gpt-4o"
 
@@ -19,7 +22,6 @@ model = "gpt-4o"
 def process_message():
     # twilio procesa content-type -> application/x-www-form-urlencoded
     print(request)
-    # Si es una petición POST, imprime los datos
     if request.method == 'POST':
         # Aquí puedes procesar el request
         print(f"Request data: {request.get_data(as_text=True)}")
@@ -31,14 +33,8 @@ def process_message():
         print(f"Message Body: {message_body}")
         print(f"From: {from_number}")
         print(f"To: {to_number}")
-        # Retornar una respuesta
         
         kavak_assistant_response = use_openai(from_number, message_body)
-
-        account_sid = os.environ['ACCOUNT_SID']
-        auth_token = os.environ['AUTH_TOKEN']
-
-        twilio_client = Client(account_sid, auth_token)
 
         message = twilio_client.messages.create(
             from_=to_number,
@@ -47,7 +43,7 @@ def process_message():
         )
 
         print(message.sid)
-        return 'Message sent to {}'.format(to_number) 
+        return f'Message sent to {to_number}' 
 
 if __name__ == '__main__':
     app.run(debug=True)
