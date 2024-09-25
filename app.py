@@ -4,13 +4,14 @@ import openai
 import os
 from dotenv import load_dotenv  # Asegúrate de importar la librería
 from twilio.rest import Client
+from openai_interaction import use_openai
 
 # Cargar las variables desde el archivo .env
 load_dotenv()
 
 app = Flask(__name__)
 
-client = openai.OpenAI(api_key="sk-svcacct-ixqcwWtpjxabp64J4csqUGSqAl_bEr6VuRx-fJjbZx5p46EQp8BJE5li9er7yitaiayk0_YBc8RiUT3BlbkFJ9aT6iWGDSFldCuId9u_VcVskvRTJfPuK4SkzN3pyjgIyAezc_s_CrgWmr4glg3R9_oe8mK-uyoTjAA")
+openai_client = openai.OpenAI(api_key="sk-svcacct-ixqcwWtpjxabp64J4csqUGSqAl_bEr6VuRx-fJjbZx5p46EQp8BJE5li9er7yitaiayk0_YBc8RiUT3BlbkFJ9aT6iWGDSFldCuId9u_VcVskvRTJfPuK4SkzN3pyjgIyAezc_s_CrgWmr4glg3R9_oe8mK-uyoTjAA")
 
 model = "gpt-4o"
 
@@ -23,7 +24,6 @@ def process_message():
         # Aquí puedes procesar el request
         print(f"Request data: {request.get_data(as_text=True)}")
         # Obtener datos del formulario
-        sms_message_sid = request.form.get('SmsMessageSid')
         message_body = request.form.get('Body')
         from_number = request.form.get('From')
         to_number = request.form.get('To')
@@ -32,15 +32,17 @@ def process_message():
         print(f"From: {from_number}")
         print(f"To: {to_number}")
         # Retornar una respuesta
+        
+        kavak_assistant_response = use_openai(openai_client, message_body, from_number)
 
         account_sid = os.environ['ACCOUNT_SID']
         auth_token = os.environ['AUTH_TOKEN']
 
-        client = Client(account_sid, auth_token)
+        twilio_client = Client(account_sid, auth_token)
 
-        message = client.messages.create(
+        message = twilio_client.messages.create(
             from_=to_number,
-            body=message_body,
+            body=kavak_assistant_response,
             to=from_number
         )
 
