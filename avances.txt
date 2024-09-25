@@ -5,7 +5,9 @@ Obtener numero de twilio x
 Definir endpoint al que se manda el post x
 Levantar servidor en VPS de hostinguers x
 Setear endpoint de flask en la VPS x
-Revisar que es lo que envia el post
+Revisar que es lo que envia el post x
+Probar el apikey de chat gpt x
+crear un asistente de IA con la data de kavak
 Del post sacar el mensaje para mandarselo a api de chat gpt
 Cargar chat gpt con el contexto
 Hacer que twilio responda con lo que le mande la api de chat gpt
