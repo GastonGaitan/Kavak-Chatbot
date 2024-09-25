@@ -11,5 +11,5 @@ crear un asistente de IA con la data de kavak x
 Del post sacar el mensaje para mandarselo a api de chat gpt x
 Cargar chat gpt con el contexto x
 Hacer que twilio responda con lo que le mande la api de chat gpt x
-Dockerizar el servidor de flask
-Mandar el numero del chatbot
+Dockerizar el servidor de flask x
+Mandar el numero del chatbot x
