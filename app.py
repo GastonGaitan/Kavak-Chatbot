@@ -11,11 +11,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-account_sid = os.environ['ACCOUNT_SID']
-auth_token = os.environ['AUTH_TOKEN']
-
-twilio_client = Client(account_sid, auth_token)
-
 model = "gpt-4o"
 
 @app.route('/', methods=['GET', 'POST'])
@@ -35,6 +30,11 @@ def process_message():
         print(f"To: {to_number}")
         
         kavak_assistant_response = use_openai(from_number, message_body)
+
+        account_sid = os.environ['ACCOUNT_SID']
+        auth_token = os.environ['AUTH_TOKEN']
+
+        twilio_client = Client(account_sid, auth_token)
 
         message = twilio_client.messages.create(
             from_=to_number,
