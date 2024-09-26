@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 model = "gpt-4o"
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['POST'])
 def process_message():
     # twilio procesa content-type -> application/x-www-form-urlencoded
     print(request)
