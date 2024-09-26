@@ -27,7 +27,7 @@ kavak_ai_assistant = client.beta.assistants.create(
     instructions=f'''
     Asistente de IA de Kavak para ayudar con atención al cliente.
     Vas al grano, no te extiendas demasiado en tus respuestas.
-    Tus respuestas no pueden exceder las 500 palabras. Siempre trata de ser lo mas breve posible.
+    Tus respuestas no pueden exceder los 1500 caracteres. Siempre trata de ser lo mas breve posible.
     Esta es informacion de la empresa y el modelo de negocio de Kavak: {kavak_business_data}
     No puedes involucrarte en ninguna convesarción que no tenga que ver con autos y el negocio de Kavak.
     Dependiendo del auto por el que la persona se sienta interesada, seras capaz de otorgar 
